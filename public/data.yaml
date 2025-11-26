@@ -1,0 +1,91 @@
+meta:
+  name: resume1
+  locale: en-US
+basics:
+  full_name: John Doe
+  job_title: Software Developer
+  location:
+    city: Foo
+    country: Bar
+  email_address: johndoe@example.com
+  phone_number: '0000000000'
+  links:
+    - label: John Doe
+      site: linkedin
+      url: https://linkedin.com/in/johndoe
+  summary:
+    section_title: Summary
+    content: I am John Doe, a Software Developer.
+education:
+  section_title: Education
+  items:
+    - institution: Example University
+      degree: Software Engineer
+      location: Foo, Bar
+      start_date: 2020-05
+      end_date: 2022-12
+      summary: I studied here.
+      highlights:
+        - Highlight 1
+        - Highlight 2
+        - Highlight 3
+work_experience:
+  section_title: Work experience
+  items:
+    - organization: Example Inc
+      position: Software Developer
+      location: Foo, Bar
+      start_date: 2020-05
+      end_date: 2022-12
+      summary: I worked here.
+      highlights:
+        - Highlight 1
+        - Highlight 2
+        - Highlight 3
+leadership_and_activities:
+  section_title: Leadership
+  items:
+    - organization: Example University
+      role: Software Engineer
+      location: Foo, Bar
+      start_date: 2020-05
+      end_date: 2022-12
+      summary: I participated here.
+      highlights:
+        - Highlight 1
+        - Highlight 2
+        - Highlight 3
+projects:
+  section_title: Projects
+  items:
+    - name: Example Project
+      start_date: 2020-05
+      end_date: 2022-12
+      summary: This was a project.
+      highlights:
+        - Highlight 1
+        - Highlight 2
+        - Highlight 3
+certifications:
+  section_title: Certifications
+  items:
+    - name: Azure Fundamentals (AZ-900)
+      issuer: Microsoft
+      date: 2022-12
+      url: https://learn.microsoft.com/en-us/certifications/azure-fundamentals/
+skills_and_interests:
+  section_title: Skills
+  items:
+    - category: Web Development
+      items:
+        - Angular
+        - Spring Boot
+    - category: Version control
+      items:
+        - Git
+        - GitHub
+        - GitLab
+    - category: Languages
+      items:
+        - Spanish (Native)
+        - English C1
