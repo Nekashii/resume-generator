@@ -75,17 +75,17 @@ certifications:
       url: https://learn.microsoft.com/en-us/certifications/azure-fundamentals/
 skills_and_interests:
   section_title: Skills
-  items:
-    - category: Web Development
-      items:
+  skills:
+    - name: Web Development
+      subskills:
         - Angular
         - Spring Boot
-    - category: Version control
-      items:
+    - name: Version control
+      subskills:
         - Git
         - GitHub
         - GitLab
-    - category: Languages
-      items:
+    - name: Languages
+      subskills:
         - Spanish (Native)
         - English C1

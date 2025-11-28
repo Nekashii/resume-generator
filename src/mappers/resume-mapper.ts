@@ -97,9 +97,9 @@ export abstract class ResumeMapper {
       skillsAndInterests: fileResume.skills_and_interests
         ? {
             sectionTitle: fileResume.skills_and_interests.section_title,
-            items: fileResume.skills_and_interests.items.map(item => ({
-              category: item.category,
-              items: item.items,
+            skills: fileResume.skills_and_interests.skills.map(skill => ({
+              name: skill.name,
+              subskills: skill.subskills,
             })),
           }
         : undefined,
@@ -201,9 +201,9 @@ export abstract class ResumeMapper {
       skills_and_interests: resume.skillsAndInterests
         ? {
             section_title: resume.skillsAndInterests.sectionTitle,
-            items: resume.skillsAndInterests.items.map(item => ({
-              category: item.category,
-              items: item.items,
+            skills: resume.skillsAndInterests.skills.map(skill => ({
+              name: skill.name,
+              subskills: skill.subskills,
             })),
           }
         : undefined,

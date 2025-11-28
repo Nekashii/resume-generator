@@ -110,10 +110,10 @@ export const FileResumeSchema = z.object({
   skills_and_interests: z
     .object({
       section_title: z.string(),
-      items: z.array(
+      skills: z.array(
         z.object({
-          category: z.string(),
-          items: z.array(z.string()).optional(),
+          name: z.string(),
+          subskills: z.array(z.string()).optional(),
         })
       ),
     })

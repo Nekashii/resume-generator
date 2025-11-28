@@ -79,9 +79,9 @@ export interface Resume {
   }
   skillsAndInterests?: {
     sectionTitle: string
-    items: {
-      category: string
-      items?: string[]
+    skills: {
+      name: string
+      subskills?: string[]
     }[]
   }
 }
