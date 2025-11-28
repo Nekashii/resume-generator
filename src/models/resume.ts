@@ -18,7 +18,7 @@ export interface Resume {
       url: string
     }[]
     summary?: {
-      sectionTitle: string
+      sectionTitle?: string
       content: string
     }
   }

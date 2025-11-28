@@ -27,7 +27,7 @@ export const FileResumeSchema = z.object({
       .optional(),
     summary: z
       .object({
-        section_title: z.string(),
+        section_title: z.string().optional(),
         content: z.string(),
       })
       .optional(),
