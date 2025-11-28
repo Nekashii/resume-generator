@@ -1,6 +1,8 @@
 import * as z from 'zod'
+import { YEAR_MONTH_RANGE_OR_PRESENT, PARTIAL_DATE } from '../constants/date-expressions'
 
-const partialDate = z.string().regex(/^\d{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12]\d|3[01]))?)?$/)
+const partialDate = z.string().regex(PARTIAL_DATE)
+const yearMonthRangeOrCustom = z.string().regex(YEAR_MONTH_RANGE_OR_PRESENT)
 
 export const FileResumeSchema = z.object({
   meta: z.object({
@@ -40,8 +42,7 @@ export const FileResumeSchema = z.object({
           institution: z.string(),
           degree: z.string(),
           location: z.string().optional(),
-          start_date: partialDate.optional(),
-          end_date: partialDate.optional(),
+          date_range: yearMonthRangeOrCustom,
           summary: z.string().optional(),
           highlights: z.array(z.string()).optional(),
         })
@@ -56,8 +57,7 @@ export const FileResumeSchema = z.object({
           organization: z.string(),
           position: z.string(),
           location: z.string().optional(),
-          start_date: partialDate.optional(),
-          end_date: partialDate.optional(),
+          date_range: yearMonthRangeOrCustom,
           summary: z.string().optional(),
           highlights: z.array(z.string()).optional(),
         })
@@ -72,8 +72,7 @@ export const FileResumeSchema = z.object({
           organization: z.string(),
           role: z.string(),
           location: z.string().optional(),
-          start_date: partialDate.optional(),
-          end_date: partialDate.optional(),
+          date_range: yearMonthRangeOrCustom,
           summary: z.string().optional(),
           highlights: z.array(z.string()).optional(),
         })
@@ -86,8 +85,7 @@ export const FileResumeSchema = z.object({
       items: z.array(
         z.object({
           name: z.string(),
-          start_date: partialDate.optional(),
-          end_date: partialDate.optional(),
+          date_range: yearMonthRangeOrCustom,
           summary: z.string().optional(),
           highlights: z.array(z.string()).optional(),
         })

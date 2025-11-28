@@ -28,8 +28,7 @@ export interface Resume {
       institution: string
       degree: string
       location?: string
-      startDate?: string
-      endDate?: string
+      dateRange: string
       summary?: string
       highlights?: string[]
     }[]
@@ -40,8 +39,7 @@ export interface Resume {
       organization: string
       position: string
       location?: string
-      startDate?: string
-      endDate?: string
+      dateRange: string
       summary?: string
       highlights?: string[]
     }[]
@@ -52,8 +50,7 @@ export interface Resume {
       organization: string
       role: string
       location?: string
-      startDate?: string
-      endDate?: string
+      dateRange: string
       summary?: string
       highlights?: string[]
     }[]
@@ -62,8 +59,7 @@ export interface Resume {
     sectionTitle: string
     items: {
       name: string
-      startDate?: string
-      endDate?: string
+      dateRange: string
       summary?: string
       highlights?: string[]
     }[]
