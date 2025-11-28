@@ -2,37 +2,46 @@ import type { FileResume } from '../models/file-resume'
 import type { Resume } from '../models/resume'
 
 export abstract class ResumeMapper {
-  static fromFile(fileResume: FileResume): Resume {
+  static fromFile({
+    meta,
+    basics,
+    education,
+    work_experience,
+    leadership_and_activities,
+    projects,
+    certifications,
+    skills_and_interests,
+  }: FileResume): Resume {
     return {
       meta: {
-        name: fileResume.meta.name,
-        locale: fileResume.meta.locale,
+        name: meta.name,
+        locale: meta.locale,
       },
       basics: {
-        fullName: fileResume.basics.full_name,
-        jobTitle: fileResume.basics.job_title,
+        fullName: basics.full_name,
+        jobTitle: basics.job_title,
         location: {
-          city: fileResume.basics.location.city,
-          country: fileResume.basics.location.country,
+          city: basics.location.city,
+          country: basics.location.country,
         },
-        emailAddress: fileResume.basics.email_address,
-        phoneNumber: fileResume.basics.phone_number,
-        links: fileResume.basics.links?.map(link => ({
+        emailAddress: basics.email_address,
+        phoneNumber: basics.phone_number,
+        links: basics.links?.map(link => ({
           label: link.label,
           site: link.site,
           url: link.url,
         })),
-        summary: fileResume.basics.summary
+        summary: basics.summary
           ? {
-              sectionTitle: fileResume.basics.summary.section_title,
-              content: fileResume.basics.summary.content,
+              sectionTitle: basics.summary.section_title,
+              content: basics.summary.content,
             }
           : undefined,
       },
-      education: fileResume.education
+      education: education
         ? {
-            sectionTitle: fileResume.education.section_title,
-            items: fileResume.education.items.map(item => ({
+            sectionTitle: education.section_title,
+            items: education.items.map(item => ({
               institution: item.institution,
               degree: item.degree,
               location: item.location,
@@ -42,10 +51,10 @@ export abstract class ResumeMapper {
             })),
           }
         : undefined,
-      workExperience: fileResume.work_experience
+      workExperience: work_experience
         ? {
-            sectionTitle: fileResume.work_experience.section_title,
-            items: fileResume.work_experience.items.map(item => ({
+            sectionTitle: work_experience.section_title,
+            items: work_experience.items.map(item => ({
               organization: item.organization,
               position: item.position,
               location: item.location,
@@ -55,10 +64,10 @@ export abstract class ResumeMapper {
             })),
           }
         : undefined,
-      leadershipAndActivities: fileResume.leadership_and_activities
+      leadershipAndActivities: leadership_and_activities
         ? {
-            sectionTitle: fileResume.leadership_and_activities.section_title,
-            items: fileResume.leadership_and_activities.items.map(item => ({
+            sectionTitle: leadership_and_activities.section_title,
+            items: leadership_and_activities.items.map(item => ({
               organization: item.organization,
               role: item.role,
               location: item.location,
@@ -68,10 +77,10 @@ export abstract class ResumeMapper {
             })),
           }
         : undefined,
-      projects: fileResume.projects
+      projects: projects
         ? {
-            sectionTitle: fileResume.projects.section_title,
-            items: fileResume.projects.items.map(item => ({
+            sectionTitle: projects.section_title,
+            items: projects.items.map(item => ({
               name: item.name,
               dateRange: item.date_range,
               summary: item.summary,
@@ -79,10 +88,10 @@ export abstract class ResumeMapper {
             })),
           }
         : undefined,
-      certifications: fileResume.certifications
+      certifications: certifications
         ? {
-            sectionTitle: fileResume.certifications.section_title,
-            items: fileResume.certifications.items.map(item => ({
+            sectionTitle: certifications.section_title,
+            items: certifications.items.map(item => ({
               name: item.name,
               issuer: item.issuer,
               date: item.date,
@@ -90,10 +99,10 @@ export abstract class ResumeMapper {
             })),
           }
         : undefined,
-      skillsAndInterests: fileResume.skills_and_interests
+      skillsAndInterests: skills_and_interests
         ? {
-            sectionTitle: fileResume.skills_and_interests.section_title,
-            skills: fileResume.skills_and_interests.skills.map(skill => ({
+            sectionTitle: skills_and_interests.section_title,
+            skills: skills_and_interests.skills.map(skill => ({
               name: skill.name,
               subskills: skill.subskills,
             })),
@@ -102,37 +111,46 @@ export abstract class ResumeMapper {
     }
   }
 
-  static toFile(resume: Resume): FileResume {
+  static toFile({
+    meta,
+    basics,
+    education,
+    workExperience,
+    leadershipAndActivities,
+    projects,
+    certifications,
+    skillsAndInterests,
+  }: Resume): FileResume {
     return {
       meta: {
-        name: resume.meta.name,
-        locale: resume.meta.locale,
+        name: meta.name,
+        locale: meta.locale,
       },
       basics: {
-        full_name: resume.basics.fullName,
-        job_title: resume.basics.jobTitle,
+        full_name: basics.fullName,
+        job_title: basics.jobTitle,
         location: {
-          city: resume.basics.location.city,
-          country: resume.basics.location.country,
+          city: basics.location.city,
+          country: basics.location.country,
         },
-        email_address: resume.basics.emailAddress,
-        phone_number: resume.basics.phoneNumber,
-        links: resume.basics.links?.map(link => ({
+        email_address: basics.emailAddress,
+        phone_number: basics.phoneNumber,
+        links: basics.links?.map(link => ({
           label: link.label,
           site: link.site,
           url: link.url,
         })),
-        summary: resume.basics.summary
+        summary: basics.summary
           ? {
-              section_title: resume.basics.summary.sectionTitle,
-              content: resume.basics.summary.content,
+              section_title: basics.summary.sectionTitle,
+              content: basics.summary.content,
             }
           : undefined,
       },
-      education: resume.education
+      education: education
         ? {
-            section_title: resume.education.sectionTitle,
-            items: resume.education.items.map(item => ({
+            section_title: education.sectionTitle,
+            items: education.items.map(item => ({
               institution: item.institution,
               degree: item.degree,
               location: item.location,
@@ -142,10 +160,10 @@ export abstract class ResumeMapper {
             })),
           }
         : undefined,
-      work_experience: resume.workExperience
+      work_experience: workExperience
         ? {
-            section_title: resume.workExperience.sectionTitle,
-            items: resume.workExperience.items.map(item => ({
+            section_title: workExperience.sectionTitle,
+            items: workExperience.items.map(item => ({
               organization: item.organization,
               position: item.position,
               location: item.location,
@@ -155,10 +173,10 @@ export abstract class ResumeMapper {
             })),
           }
         : undefined,
-      leadership_and_activities: resume.leadershipAndActivities
+      leadership_and_activities: leadershipAndActivities
         ? {
-            section_title: resume.leadershipAndActivities.sectionTitle,
-            items: resume.leadershipAndActivities.items.map(item => ({
+            section_title: leadershipAndActivities.sectionTitle,
+            items: leadershipAndActivities.items.map(item => ({
               organization: item.organization,
               role: item.role,
               location: item.location,
@@ -168,10 +186,10 @@ export abstract class ResumeMapper {
             })),
           }
         : undefined,
-      projects: resume.projects
+      projects: projects
         ? {
-            section_title: resume.projects.sectionTitle,
-            items: resume.projects.items.map(item => ({
+            section_title: projects.sectionTitle,
+            items: projects.items.map(item => ({
               name: item.name,
               date_range: item.dateRange,
               summary: item.summary,
@@ -179,10 +197,10 @@ export abstract class ResumeMapper {
             })),
           }
         : undefined,
-      certifications: resume.certifications
+      certifications: certifications
         ? {
-            section_title: resume.certifications.sectionTitle,
-            items: resume.certifications.items.map(item => ({
+            section_title: certifications.sectionTitle,
+            items: certifications.items.map(item => ({
               name: item.name,
               issuer: item.issuer,
               date: item.date,
@@ -190,10 +208,10 @@ export abstract class ResumeMapper {
             })),
           }
         : undefined,
-      skills_and_interests: resume.skillsAndInterests
+      skills_and_interests: skillsAndInterests
         ? {
-            section_title: resume.skillsAndInterests.sectionTitle,
-            skills: resume.skillsAndInterests.skills.map(skill => ({
+            section_title: skillsAndInterests.sectionTitle,
+            skills: skillsAndInterests.skills.map(skill => ({
               name: skill.name,
               subskills: skill.subskills,
             })),
