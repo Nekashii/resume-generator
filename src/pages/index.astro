@@ -14,9 +14,16 @@
     <h1>Astro</h1>
     <div id="container"></div>
     <script>
+      import yaml from 'js-yaml'
       import { Liquid } from 'liquidjs'
+      import { ResumeMapper } from '../mappers/resume-mapper'
+      import { FileResumeSchema } from '../models/file-resume-schema'
+
+      const resumeData = ResumeMapper.fromFile(FileResumeSchema.parse(yaml.load(await fetch('/data.yaml').then(res => res.text()))))
+
       const engine = new Liquid()
-      document.getElementById('container')!.innerHTML = await engine.renderFile('template.liquid')
+
+      document.getElementById('container')!.innerHTML = await engine.renderFile('template.liquid', resumeData)
     </script>
   </body>
 </html>

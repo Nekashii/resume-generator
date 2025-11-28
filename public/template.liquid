@@ -1,107 +1,178 @@
 <article>
-  <h1>John Doe</h1>
-  <p>Software Developer</p>
-  <p>Foo, Bar</p>
-  <p><a href="mailto:johndoe@example.com">johndoe@example.com</a></p>
-  <p><a href="tel:0000000000">0000000000</a></p>
-  <p><a href="https://linkedin.com/in/johndoe" data-site="linkedin">Linkedin: John Doe</a></p>
-  <section>
-    <h2>Summary</h2>
-    <p>I am John Doe, a Software Developer.</p>
-  </section>
-  <section>
-    <h2>Education</h2>
-    <article>
-      <h3>Example University</h3>
-      <p>Software Engineer</p>
-      <p>Foo, Bar</p>
-      <p>2020-05 - 2022-12</p>
-      <p>I have studied here.</p>
+  <h1>{{ basics.fullName }}</h1>
+  <p>{{ basics.jobTitle }}</p>
+  <p>{{ basics.location.city }}, {{ basics.location.country }}</p>
+  <p>
+    <a href="mailto:{{ basics.emailAddress }}">{{ basics.emailAddress }}</a>
+  </p>
+  <p>
+    <a href="tel:{{ basics.phoneNumber }}">{{ basics.phoneNumber }}</a>
+  </p>
+  {% for link in basics.links %}
+    <p>
+      <a href="{{ link.url }}" data-site="{{ link.site }}">{{ link.label }}</a>
+    </p>
+  {% endfor %}
+  {% if basics.summary %}
+    <section>
+      {% if basics.summary.sectionTitle %}
+        <h2>{{ basics.summary.sectionTitle }}</h2>
+      {% endif %}
+      <p>{{ basics.summary.content }}</p>
+    </section>
+  {% endif %}
+  {% if education %}
+    <section>
+      <h2>{{ education.sectionTitle }}</h2>
+      {% for item in education.items %}
+        <article>
+          <h3>{{ item.institution }}</h3>
+          <p>{{ item.degree }}</p>
+          {% if item.location %}
+            <p>{{ item.location }}</p>
+          {% endif %}
+          {% if item.startDate %}
+            <p>
+              {{ item.startDate }}
+              {% if item.endDate %} - {{ item.endDate }}{% endif %}
+            </p>
+          {% endif %}
+          {% if item.summary %}
+            <p>{{ item.summary }}</p>
+          {% endif %}
+          {% if item.highlights %}
+            <ul>
+              {% for highlight in item.highlights %}
+                <li>{{ highlight }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </section>
+  {% endif %}
+  {% if workExperience %}
+    <section>
+      <h2>{{ workExperience.sectionTitle }}</h2>
+      {% for item in workExperience.items %}
+        <article>
+          <h3>{{ item.organization }}</h3>
+          <p>{{ item.position }}</p>
+          {% if item.location %}
+            <p>{{ item.location }}</p>
+          {% endif %}
+          {% if item.startDate %}
+            <p>
+              {{ item.startDate }}
+              {% if item.endDate %} - {{ item.endDate }}{% endif %}
+            </p>
+          {% endif %}
+          {% if item.summary %}
+            <p>{{ item.summary }}</p>
+          {% endif %}
+          {% if item.highlights %}
+            <ul>
+              {% for highlight in item.highlights %}
+                <li>{{ highlight }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </section>
+  {% endif %}
+  {% if leadershipAndActivities %}
+    <section>
+      <h2>{{ leadershipAndActivities.sectionTitle }}</h2>
+      {% for item in leadershipAndActivities.items %}
+        <article>
+          <h3>{{ item.organization }}</h3>
+          <p>{{ item.role }}</p>
+          {% if item.location %}
+            <p>{{ item.location }}</p>
+          {% endif %}
+          {% if item.startDate %}
+            <p>
+              {{ item.startDate }}
+              {% if item.endDate %} - {{ item.endDate }}{% endif %}
+            </p>
+          {% endif %}
+          {% if item.summary %}
+            <p>{{ item.summary }}</p>
+          {% endif %}
+          {% if item.highlights %}
+            <ul>
+              {% for highlight in item.highlights %}
+                <li>{{ highlight }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </section>
+  {% endif %}
+  {% if projects %}
+    <section>
+      <h2>{{ projects.sectionTitle }}</h2>
+      {% for item in projects.items %}
+        <article>
+          <h3>{{ item.name }}</h3>
+          {% if item.startDate %}
+            <p>
+              {{ item.startDate }}
+              {% if item.endDate %} - {{ item.endDate }}{% endif %}
+            </p>
+          {% endif %}
+          {% if item.summary %}
+            <p>{{ item.summary }}</p>
+          {% endif %}
+          {% if item.highlights %}
+            <ul>
+              {% for highlight in item.highlights %}
+                <li>{{ highlight }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </section>
+  {% endif %}
+  {% if certifications %}
+    <section>
+      <h2>{{ certifications.sectionTitle }}</h2>
+      {% for item in certifications.items %}
+        <article>
+          <h3>{{ item.name }}</h3>
+          <p>{{ item.issuer }}</p>
+          {% if item.date %}
+            <p>
+              {{ item.date }}
+            </p>
+          {% endif %}
+          {% if item.url %}
+            <a href="{{ item.url }}" target="_blank">Certificate</a>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </section>
+  {% endif %}
+  {% if skillsAndInterests %}
+    <section>
+      <h2>{{ skillsAndInterests.sectionTitle }}</h2>
       <ul>
-        <li>Highlight 1</li>
-        <li>Highlight 2</li>
-        <li>Highlight 3</li>
+        {% for item in skillsAndInterests.items %}
+          <li>
+            {{ item.category }}
+            {% if item.items %}
+              <ul>
+                {% for item in item.items %}
+                  <li>{{ item }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </li>
+        {% endfor %}
       </ul>
-    </article>
-  </section>
-  <section>
-    <h2>Work experience</h2>
-    <article>
-      <h3>Example Inc</h3>
-      <p>Software Developer</p>
-      <p>Foo, Bar</p>
-      <p>2020-05 - 2022-12</p>
-      <p>I have worked here.</p>
-      <ul>
-        <li>Highlight 1</li>
-        <li>Highlight 2</li>
-        <li>Highlight 3</li>
-      </ul>
-    </article>
-  </section>
-  <section>
-    <h2>Leadership</h2>
-    <article>
-      <h3>Example Organization</h3>
-      <p>Board Member</p>
-      <p>Foo, Bar</p>
-      <p>2020-05 - 2022-12</p>
-      <p>I have participated here.</p>
-      <ul>
-        <li>Highlight 1</li>
-        <li>Highlight 2</li>
-        <li>Highlight 3</li>
-      </ul>
-    </article>
-  </section>
-  <section>
-    <h2>Projects</h2>
-    <article>
-      <h3>Example Project</h3>
-      <p>Software Developer</p>
-      <p>2020-05 - 2022-12</p>
-      <p>This was a project.</p>
-      <ul>
-        <li>Highlight 1</li>
-        <li>Highlight 2</li>
-        <li>Highlight 3</li>
-      </ul>
-    </article>
-  </section>
-  <section>
-    <h2>Certifications</h2>
-    <article>
-      <h3>Azure Fundamentals (AZ-900)</h3>
-      <p>Microsoft</p>
-      <p>2022-12</p>
-      <a href="https://learn.microsoft.com/en-us/certifications/azure-fundamentals/">Certificate</a>
-    </article>
-  </section>
-  <section>
-    <h2>Skills</h2>
-    <ul>
-      <li>
-        Development
-        <ul>
-          <li>Angular</li>
-          <li>Spring Boot</li>
-        </ul>
-      </li>
-      <li>
-        Version control
-        <ul>
-          <li>Git</li>
-          <li>GitHub</li>
-          <li>GitLab</li>
-        </ul>
-      </li>
-      <li>
-        Languages
-        <ul>
-          <li>Spanish (Native)</li>
-          <li>English C1</li>
-        </ul>
-      </li>
-    </ul>
-  </section>
+    </section>
+  {% endif %}
 </article>
