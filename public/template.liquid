@@ -31,7 +31,7 @@
           {% if item.location %}
             <p>{{ item.location }}</p>
           {% endif %}
-          <p>{{ item.dateRange }}</p>
+          <p>{{ item.dateRange | yearMonthRange: meta.locale }}</p>
           {% if item.summary %}
             <p>{{ item.summary }}</p>
           {% endif %}
@@ -56,7 +56,7 @@
           {% if item.location %}
             <p>{{ item.location }}</p>
           {% endif %}
-          <p>{{ item.dateRange }}</p>
+          <p>{{ item.dateRange | yearMonthRange: meta.locale }}</p>
           {% if item.summary %}
             <p>{{ item.summary }}</p>
           {% endif %}
@@ -81,7 +81,7 @@
           {% if item.location %}
             <p>{{ item.location }}</p>
           {% endif %}
-          <p>{{ item.dateRange }}</p>
+          <p>{{ item.dateRange | yearMonthRange: meta.locale }}</p>
           {% if item.summary %}
             <p>{{ item.summary }}</p>
           {% endif %}
@@ -102,7 +102,7 @@
       {% for item in projects.items %}
         <article>
           <h3>{{ item.name }}</h3>
-          <p>{{ item.dateRange }}</p>
+          <p>{{ item.dateRange | yearMonthRange: meta.locale }}</p>
           {% if item.summary %}
             <p>{{ item.summary }}</p>
           {% endif %}
@@ -126,7 +126,7 @@
           <p>{{ item.issuer }}</p>
           {% if item.date %}
             <p>
-              {{ item.date }}
+              {{ item.date | partialDate: meta.locale }}
             </p>
           {% endif %}
           {% if item.url %}

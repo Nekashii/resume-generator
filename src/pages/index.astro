@@ -18,10 +18,14 @@
       import { Liquid } from 'liquidjs'
       import { ResumeMapper } from '../mappers/resume-mapper'
       import { FileResumeSchema } from '../models/file-resume-schema'
+      import { partialDate, yearMonthRangeOrPresent } from '../utils/date-format-utils'
 
       const resumeData = ResumeMapper.fromFile(FileResumeSchema.parse(yaml.load(await fetch('/data.yaml').then(res => res.text()))))
 
       const engine = new Liquid()
+
+      engine.registerFilter('partialDate', partialDate)
+      engine.registerFilter('yearMonthRange', yearMonthRangeOrPresent)
 
       document.getElementById('container')!.innerHTML = await engine.renderFile('template.liquid', resumeData)
     </script>
