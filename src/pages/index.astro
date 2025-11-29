@@ -1,18 +1,38 @@
 ---
-
+import '../styles/global.css'
 ---
 
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume Generator</title>
   </head>
-  <body>
-    <h1>Astro</h1>
-    <div id="container"></div>
+  <body class="w-full min-h-dvh grid grid-rows-[auto_1fr_auto] bg-gray-100">
+    <header class="bg-indigo-600 text-white px-6 py-4 flex items-center gap-4">
+      <h1 class="text-xl font-semibold text-center flex-1">Resume Generator</h1>
+      <button
+        id="printButton"
+        class="border-2 border-white p-1 rounded-md hover:bg-white hover:text-indigo-600 cursor-pointer transition-colors duration-100"
+      >
+        Print
+      </button>
+    </header>
+    <main class="grid p-10 justify-center">
+      <div class="bg-white min-h-[11in] w-[8.5in] shadow-lg grid relative border border-gray-300 overflow-clip">
+        <article id="container"></article>
+        <hr class="top-[11in] absolute w-full border-dashed border-gray-300 border" />
+      </div>
+    </main>
+    <footer class="bg-indigo-900 text-white px-6 py-3">
+      <p class="text-center">
+        Resume Generator | <a class="underline font-semibold" href="https://github.com/Nekashii/resume-generator">
+          GitHub
+        </a>
+      </p>
+    </footer>
     <script>
       import yaml from 'js-yaml'
       import { Liquid } from 'liquidjs'
@@ -20,7 +40,11 @@
       import { FileResumeSchema } from '../models/file-resume-schema'
       import { partialDate, yearMonthRangeOrPresent } from '../utils/date-format-utils'
 
-      const resumeData = ResumeMapper.fromFile(FileResumeSchema.parse(yaml.load(await fetch('/data.yaml').then(res => res.text()))))
+      document.getElementById('printButton')!.addEventListener('click', () => window.print())
+
+      const resumeData = ResumeMapper.fromFile(
+        FileResumeSchema.parse(yaml.load(await fetch('/data.yaml').then(res => res.text())))
+      )
 
       const engine = new Liquid()
 
