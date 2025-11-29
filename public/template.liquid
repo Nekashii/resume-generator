@@ -140,13 +140,13 @@
     <section>
       <h2>{{ skillsAndInterests.sectionTitle }}</h2>
       <ul>
-        {% for item in skillsAndInterests.items %}
+        {% for skill in skillsAndInterests.skills %}
           <li>
-            {{ item.category }}
-            {% if item.items %}
+            {{ skill.name }}
+            {% if skill.subskills %}
               <ul>
-                {% for item in item.items %}
-                  <li>{{ item }}</li>
+                {% for subskill in skill.subskills %}
+                  <li>{{ subskill }}</li>
                 {% endfor %}
               </ul>
             {% endif %}
