@@ -22,7 +22,7 @@ import '../styles/global.css'
     </header>
     <main class="grid p-10 justify-center">
       <div class="bg-white min-h-[11in] w-[8.5in] shadow-lg grid relative border border-gray-300 overflow-clip">
-        <article id="container"></article>
+        <iframe style="width: 100%" id="container"></iframe>
         <hr class="top-[11in] absolute w-full border-dashed border-gray-300 border" />
       </div>
     </main>
@@ -38,20 +38,49 @@ import '../styles/global.css'
       import { Liquid } from 'liquidjs'
       import { ResumeMapper } from '../mappers/resume-mapper'
       import { FileResumeSchema } from '../models/file-resume-schema'
+      import type { Resume } from '../models/resume'
       import { partialDate, yearMonthRangeOrPresent } from '../utils/date-format-utils'
 
-      document.getElementById('printButton')!.addEventListener('click', () => window.print())
-
-      const resumeData = ResumeMapper.fromFile(
-        FileResumeSchema.parse(yaml.load(await fetch('/data.yaml').then(res => res.text())))
-      )
-
+      const iframe = document.getElementById('container') as HTMLIFrameElement
       const engine = new Liquid()
+
+      async function render(resumeData: Resume, resumeTemplate: string) {
+        iframe.srcdoc = `
+          <!DOCTYPE html>
+          <html lang="${resumeData.meta.locale}">
+          <head>
+            <title>${resumeData.meta.name}</title>
+            <style>
+              html,body {
+                margin:0;
+                padding:0;
+                overflow:hidden;
+                box-sizing:border-box;
+              }
+            </style>
+          </head>
+          <body>${await engine.renderFile('template.liquid', resumeData)}</body>
+          </html>
+        `
+      }
+
+      iframe.onload = () => (iframe.height = iframe.contentDocument!.body.scrollHeight.toString())
+
+      document.getElementById('printButton')!.addEventListener('click', () => iframe.contentWindow!.print())
 
       engine.registerFilter('partialDate', partialDate)
       engine.registerFilter('yearMonthRange', yearMonthRangeOrPresent)
 
-      document.getElementById('container')!.innerHTML = await engine.renderFile('template.liquid', resumeData)
+      const [data, template] = await Promise.all([
+        fetch('data.yaml')
+          .then(res => res.text())
+          .then(yaml.load)
+          .then(FileResumeSchema.parseAsync)
+          .then(ResumeMapper.fromFile),
+        fetch('template.liquid').then(res => res.text()),
+      ])
+
+      render(data, template)
     </script>
   </body>
 </html>
