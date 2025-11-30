@@ -6,10 +6,7 @@ export interface Resume {
   basics: {
     fullName: string
     jobTitle: string
-    location: {
-      city: string
-      country: string
-    }
+    location: string
     emailAddress: string
     phoneNumber: string
     links?: {

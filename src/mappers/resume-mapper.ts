@@ -20,10 +20,7 @@ export abstract class ResumeMapper {
       basics: {
         fullName: basics.full_name,
         jobTitle: basics.job_title,
-        location: {
-          city: basics.location.city,
-          country: basics.location.country,
-        },
+        location: basics.location,
         emailAddress: basics.email_address,
         phoneNumber: basics.phone_number,
         links: basics.links?.map(link => ({
@@ -129,10 +126,7 @@ export abstract class ResumeMapper {
       basics: {
         full_name: basics.fullName,
         job_title: basics.jobTitle,
-        location: {
-          city: basics.location.city,
-          country: basics.location.country,
-        },
+        location: basics.location,
         email_address: basics.emailAddress,
         phone_number: basics.phoneNumber,
         links: basics.links?.map(link => ({

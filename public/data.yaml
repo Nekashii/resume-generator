@@ -4,9 +4,7 @@ meta:
 basics:
   full_name: John Doe
   job_title: Software Developer
-  location:
-    city: Foo
-    country: Bar
+  location: Foo, Bar
   email_address: johndoe@example.com
   phone_number: '0000000000'
   links:
