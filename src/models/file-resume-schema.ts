@@ -11,7 +11,7 @@ export const FileResumeSchema = z.object({
   }),
   basics: z.object({
     full_name: z.string(),
-    job_title: z.string(),
+    job_title: z.string().optional(),
     location: z.string(),
     email_address: z.string(),
     phone_number: z.string(),

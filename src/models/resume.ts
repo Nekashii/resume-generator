@@ -5,7 +5,7 @@ export interface Resume {
   }
   basics: {
     fullName: string
-    jobTitle: string
+    jobTitle?: string
     location: string
     emailAddress: string
     phoneNumber: string
