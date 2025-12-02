@@ -31,7 +31,7 @@
           {% if item.location %}
             <p>{{ item.location }}</p>
           {% endif %}
-          <p>{{ item.dateRange | yearMonthRange: meta.locale }}</p>
+          <p>{{ item.graduationDate | partialDate: meta.locale }}</p>
           {% if item.summary %}
             <p>{{ item.summary }}</p>
           {% endif %}

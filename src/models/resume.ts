@@ -25,7 +25,7 @@ export interface Resume {
       institution: string
       degree: string
       location?: string
-      dateRange: string
+      graduationDate: string
       summary?: string
       highlights?: string[]
     }[]

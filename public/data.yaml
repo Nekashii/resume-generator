@@ -20,7 +20,7 @@ education:
     - institution: Example University
       degree: Software Engineer
       location: Foo, Bar
-      date_range: 2020-05,2022-12
+      graduation_date: 2022-12
       summary: I studied here.
       highlights:
         - Highlight 1

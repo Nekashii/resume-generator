@@ -1,5 +1,5 @@
 import * as z from 'zod'
-import { YEAR_MONTH_RANGE_OR_PRESENT, PARTIAL_DATE } from '../constants/date-expressions'
+import { PARTIAL_DATE, YEAR_MONTH_RANGE_OR_PRESENT } from '../constants/date-expressions'
 
 const partialDate = z.string().regex(PARTIAL_DATE)
 const yearMonthRangeOrCustom = z.string().regex(YEAR_MONTH_RANGE_OR_PRESENT)
@@ -39,7 +39,7 @@ export const FileResumeSchema = z.object({
           institution: z.string(),
           degree: z.string(),
           location: z.string().optional(),
-          date_range: yearMonthRangeOrCustom,
+          graduation_date: partialDate,
           summary: z.string().optional(),
           highlights: z.array(z.string()).optional(),
         })
