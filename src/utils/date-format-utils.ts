@@ -28,7 +28,7 @@ export function yearMonthRangeOrPresent(range: string, locale: string): string {
 
   if (!YEAR_MONTH.test(end)) return `${startDate} - ${capitalize(end)}`
 
-  if (start.split('-')[0] == start.split('-')[0])
+  if (start.split('-')[0] == end.split('-')[0])
     startDate = capitalize(new Intl.DateTimeFormat(locale, { month: 'long' }).format(partialToDate(start)))
 
   const endDate = capitalize(

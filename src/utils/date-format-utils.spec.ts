@@ -38,6 +38,10 @@ describe('Year-month range or "present"', () => {
     expect(yearMonthRangeOrPresent('2025-03,2025-03', 'en')).toBe('March 2025')
   })
 
+  it('Should not abbreviate when start and end values are in different years ', () => {
+    expect(yearMonthRangeOrPresent('2024-03,2025-03', 'en')).toBe('March 2024 - March 2025')
+  })
+
   it('Should work with different locales', () => {
     expect(yearMonthRangeOrPresent('2025-03,2025-04', 'es-MX')).toBe('Marzo - Abril de 2025')
     expect(yearMonthRangeOrPresent('2025-03,Presente', 'es-MX')).toBe('Marzo de 2025 - Presente')
