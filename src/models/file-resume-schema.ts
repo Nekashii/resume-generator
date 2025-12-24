@@ -15,15 +15,7 @@ export const FileResumeSchema = z.object({
     location: z.string(),
     email_address: z.string(),
     phone_number: z.string(),
-    links: z
-      .array(
-        z.object({
-          label: z.string(),
-          site: z.string(),
-          url: z.url(),
-        })
-      )
-      .optional(),
+    links: z.array(z.string()).optional(),
     summary: z
       .object({
         section_title: z.string().optional(),
@@ -97,7 +89,6 @@ export const FileResumeSchema = z.object({
           name: z.string(),
           issuer: z.string(),
           date: partialDate.optional(),
-          url: z.url().optional(),
         })
       ),
     })

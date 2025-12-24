@@ -9,11 +9,7 @@ export interface Resume {
     location: string
     emailAddress: string
     phoneNumber: string
-    links?: {
-      label: string
-      site: string
-      url: string
-    }[]
+    links?: string[]
     summary?: {
       sectionTitle?: string
       content: string
@@ -67,7 +63,6 @@ export interface Resume {
       name: string
       issuer: string
       date?: string
-      url?: string
     }[]
   }
   skillsAndInterests?: {

@@ -1,5 +1,5 @@
-import type { FileResume } from '../models/file-resume'
-import type { Resume } from '../models/resume'
+import type { FileResume } from "../models/file-resume"
+import type { Resume } from "../models/resume"
 
 export abstract class ResumeMapper {
   static fromFile({
@@ -23,11 +23,7 @@ export abstract class ResumeMapper {
         location: basics.location,
         emailAddress: basics.email_address,
         phoneNumber: basics.phone_number,
-        links: basics.links?.map(link => ({
-          label: link.label,
-          site: link.site,
-          url: link.url,
-        })),
+        links: basics.links,
         summary: basics.summary
           ? {
               sectionTitle: basics.summary.section_title,
@@ -92,7 +88,6 @@ export abstract class ResumeMapper {
               name: item.name,
               issuer: item.issuer,
               date: item.date,
-              url: item.url,
             })),
           }
         : undefined,
@@ -129,11 +124,7 @@ export abstract class ResumeMapper {
         location: basics.location,
         email_address: basics.emailAddress,
         phone_number: basics.phoneNumber,
-        links: basics.links?.map(link => ({
-          label: link.label,
-          site: link.site,
-          url: link.url,
-        })),
+        links: basics.links,
         summary: basics.summary
           ? {
               section_title: basics.summary.sectionTitle,
@@ -198,7 +189,6 @@ export abstract class ResumeMapper {
               name: item.name,
               issuer: item.issuer,
               date: item.date,
-              url: item.url,
             })),
           }
         : undefined,
